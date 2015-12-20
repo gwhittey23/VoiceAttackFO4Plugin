@@ -110,6 +110,24 @@ namespace VoiceAttackFO4Plugin
                 }
                     
             }
+
+            if (textValues.ContainsKey("Direction_Location")) 
+            {
+                if (textValues["Direction_Location"] == null) //if the value is null, set the value to, 'Vault 111'
+                {
+                    strVariable = "Vault 111";
+                }
+
+                else
+                {
+                    strVariable = textValues["Direction_Location"];
+
+                }
+
+            }
+
+
+           
             strMsg = strCommand + ";" + strVariable;
             String sndClient = SendMsg(IPAddress.Parse("127.0.0.1"), 8089, strMsg);
             textValues["ServerResponse"] = sndClient;
