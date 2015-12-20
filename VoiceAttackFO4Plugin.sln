@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceAttackFO4Plugin", "VoiceAttackFO4Plugin\VoiceAttackFO4Plugin.csproj", "{64335FAA-1DBB-4FFB-B1D4-83E6B49CBB35}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Voice Attack Profiles", "Voice Attack Profiles", "{47DBA508-1A8A-4820-8729-B9458217F793}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
