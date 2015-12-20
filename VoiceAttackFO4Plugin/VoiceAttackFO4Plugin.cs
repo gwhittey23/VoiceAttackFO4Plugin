@@ -26,7 +26,7 @@ namespace VoiceAttackFO4Plugin
         public static string VA_DisplayInfo()
         {
             return "VoiceAttackPlugin\r\n\r\nTo be used with Fallout 4\r\n\r\n2014 VoiceAttack";  //this is just extended info that you might want to give to the user.  note that you should format this up properly.
-        }
+        } 
 
         public static Guid VA_Id()
         {
