@@ -61,34 +61,7 @@ namespace VATestPlugin
 
         public static void VA_Invoke1(String context, ref Dictionary<string, object> state, ref Dictionary<string, Int16?> conditions, ref Dictionary<string, string> textValues, ref Dictionary<string, object> extendedValues)
         {
-            //This function is where you will do all of your work.  When VoiceAttack encounters an, 'Execute External Plugin Function' action, the plugin indicated will be called.
-
-            //What you are getting in this function as parameters :
-
-            //context - a string that can be anything you want it to be.  this is passed in from the command action.  this was added to allow you to just pass a value into the plugin in a simple fashion (without having to set conditions/text values beforehand).  Convert the string to whatever type you need to.
-
-            //three dictionaries which are all local copies :
-            //state - all values from the state maintained by VoiceAttack for this plugin.  the state allows you to maintain kind of a, 'session' within VoiceAttack.  this value is not persisted to disk and will be erased on restart. other plugins do not have access to this state (private to the plugin)
-            //conditions - the conditions that were specified in the, 'Execute External' command action.
-            //textValues - the text values that were specified in the, 'Execute External' command action.
-            //(you also get, 'extendedValues', but, that will be null because it is for future use)
-
-            //the condition and text value dictionaries can be manipulated as follows :
-            //items can be updated
-            //items can be added to the dictionary
-            //to indicate to VoiceAttack that you want to remove an item from the each dictionary, set its value to null (a process is already in place to remove items that are null for cleanup purposes, so, we can just use that)
-            //any updated values will be reflected back to existing VoiceAttack internal values.
-            //any added values will be added to the VoiceAttack internal values.
-
-            //the state dictionary is the complete state.  you can manipulate it however you want, the whole thing will be copied back and replace what VoiceAttack is holding on to
-
-            //if the, 'Execute External Plugin Function' command action has the, 'wait for return' flag set, VoiceAttack will wait until this function completes so that you may check condition values and
-            //have VoiceAttack react accordingly.  otherwise, VoiceAttack fires and forgets and doesn't hang out for extra processing.
-
-
-            //below is just some sample code showing how to work with dicitionaries...  in case you're not familiar with them.  just wouldn't feel complete unless i included it for some reason :)
-
-            //here we test to see if the dictionary contains a certain key.  checking for the key first is important to avoid errors.  you can do this when setting a value and, 'TryGetValue' when you are retrieving values
+            
             string strMsg = "";
             if (textValues.ContainsKey("Home_Location")) //was the text value passed in?
             {
