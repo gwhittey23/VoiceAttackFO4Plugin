@@ -25,7 +25,7 @@ namespace VoiceAttackFO4Plugin
 
         public static string VA_DisplayInfo()
         {
-            return "VoiceAttackPlugin\r\n\r\nTo be used with Fallout 4\r\n\r\n2014 VoiceAttack";  //this is just extended info that you might want to give to the user.  note that you should format this up properly.
+            return "VoiceAttackPlugin\r\n\r\nTo be used with Fallout 4\r\n\r\n2014 VoiceAttack V.09";  //this is just extended info that you might want to give to the user.  note that you should format this up properly.
         } 
 
         public static Guid VA_Id()
@@ -43,8 +43,8 @@ namespace VoiceAttackFO4Plugin
             conditions.Add("initializedCondition1", 1);  //add some meaningless example conditions
             conditions.Add("initializedCondition2", 2);
 
-            textValues.Add("initializedText1", "This is 1");  //add some meaningless example text values
-            textValues.Add("initializedText2", "This is 2");
+            textValues.Add("HOST", "127.0.0.1");  //add some meaningless example text values
+            textValues.Add("PORT", "8089");
 
             state.Add("new state value", 369);  //add whatever private state information you want to maintain
             state.Add("second new state value", "hello");
@@ -106,7 +106,7 @@ namespace VoiceAttackFO4Plugin
                 else
                 {
                     strCommand = textValues["SentCommand"];
-                    textValues["ReturnMessage"] = "Command Sent";
+                    
                 }
                     
             }
@@ -126,11 +126,32 @@ namespace VoiceAttackFO4Plugin
 
             }
 
+            if (textValues.ContainsKey("MonitorHP"))
+            {
+                if (textValues["MonitorHP"] == null) //if the value is null, set the value to, 'Vault 111'
+                {
+                    strVariable = "MonitorHP";
+                    strCommand = "MonitorHP";
+                }
+
+                else
+                {
+                    strVariable = textValues["MonitorHP"];
+                   
+                }
+
+            }
+
 
            
             strMsg = strCommand + ";" + strVariable;
             String sndClient = SendMsg(IPAddress.Parse("127.0.0.1"), 8089, strMsg);
             textValues["ServerResponse"] = sndClient;
+            if (strCommand == "MonitorHP")
+            {
+
+
+            }
         }
 
 
