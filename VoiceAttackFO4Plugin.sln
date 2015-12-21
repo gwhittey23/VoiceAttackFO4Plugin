@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceAttackFO4Plugin", "Voi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Voice Attack Profiles", "Voice Attack Profiles", "{1CE9266A-27CB-4DEE-AA82-3DD058EFA07F}"
 	ProjectSection(SolutionItems) = preProject
+		Voice Attack Profiles\FO4VAPlugin-Profile.vap = Voice Attack Profiles\FO4VAPlugin-Profile.vap
 		Voice Attack Profiles\HPMointorTEST.vap = Voice Attack Profiles\HPMointorTEST.vap
 	EndProjectSection
 EndProject
