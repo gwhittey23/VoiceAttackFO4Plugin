@@ -40,14 +40,8 @@ namespace VoiceAttackFO4Plugin
             //the state parameter is a local copy of the state held on to by VoiceAttack.  In this case, the state will be a dictionary with zero items.  You can add as many items to hold on to as you want.
             //the conditions and textValues will also be empty.  You can add whatever you want to those lists and VoiceAttack will copy the values into its own lists
 
-            conditions.Add("initializedCondition1", 1);  //add some meaningless example conditions
-            conditions.Add("initializedCondition2", 2);
 
-            textValues.Add("HOST", "127.0.0.1");  //add some meaningless example text values
-            textValues.Add("PORT", "8089");
 
-            state.Add("new state value", 369);  //add whatever private state information you want to maintain
-            state.Add("second new state value", "hello");
         }
 
         public static void VA_Exit1(ref Dictionary<string, object> state)
@@ -61,29 +55,48 @@ namespace VoiceAttackFO4Plugin
 
         public static void VA_Invoke1(String context, ref Dictionary<string, object> state, ref Dictionary<string, Int16?> conditions, ref Dictionary<string, string> textValues, ref Dictionary<string, object> extendedValues)
         {
-            
+           
             string strVariable = "";
             string strCommand = "";
             string strMsg = "";
-            textValues["ReturnMessage"] = "Strart";
-            if (textValues.ContainsKey("Home_Location")) //was the text value passed in?
+            string strHOST = "";
+            int strPORT = 8089;
+
+            if (textValues.ContainsKey("HOST")) 
             {
-                if (textValues["Home_Location"] == null) //if the value is null, set the value to, 'Vault 111'
+                if (textValues["HOST"] == null) 
                 {
-                    strVariable = "Vault 111";
+                    strHOST = "127.0.0.1";
                 }
 
                 else
                 {
-                    strVariable = textValues["Home_Location"];
+                    strHOST = textValues["HOST"];
+
+                }
+
+            }
+
+
+
+            if (textValues.ContainsKey("PORT")) 
+            {
+                if (textValues["PORT"] == null) 
+                {
+                    strPORT = Int32.Parse("8089");
+                }
+
+                else
+                {
+                    strPORT = Int32.Parse(textValues["PORT"]);
                 }
 
                     
             }
 
-            if (textValues.ContainsKey("FT_Location")) //was the text value passed in?
+            if (textValues.ContainsKey("FT_Location")) 
             {
-                if (textValues["FT_Location"] == null) //if the value is null, set the value to, 'Vault 111'
+                if (textValues["FT_Location"] == null) 
                 {
                     strVariable = "Vault 111";
                 }
@@ -113,7 +126,7 @@ namespace VoiceAttackFO4Plugin
 
             if (textValues.ContainsKey("Direction_Location")) 
             {
-                if (textValues["Direction_Location"] == null) //if the value is null, set the value to, 'Vault 111'
+                if (textValues["Direction_Location"] == null) 
                 {
                     strVariable = "Vault 111";
                 }
@@ -128,7 +141,7 @@ namespace VoiceAttackFO4Plugin
 
             if (textValues.ContainsKey("MonitorHP"))
             {
-                if (textValues["MonitorHP"] == null) //if the value is null, set the value to, 'Vault 111'
+                if (textValues["MonitorHP"] == null) 
                 {
                     strVariable = "MonitorHP";
                     strCommand = "MonitorHP";
@@ -145,7 +158,7 @@ namespace VoiceAttackFO4Plugin
 
            
             strMsg = strCommand + ";" + strVariable;
-            String sndClient = SendMsg(IPAddress.Parse("127.0.0.1"), 8089, strMsg);
+            String sndClient = SendMsg(IPAddress.Parse(strHOST), strPORT, strMsg);
             textValues["ServerResponse"] = sndClient;
             if (strCommand == "MonitorHP")
             {
@@ -190,7 +203,7 @@ namespace VoiceAttackFO4Plugin
                     sender.Shutdown(SocketShutdown.Both);
                     sender.Close();
 
-                }
+                } // TODO Add more descriptive errors.
                 catch (ArgumentNullException ane)
                 {
                     Console.WriteLine("ArgumentNullException : {0}", ane.ToString());
