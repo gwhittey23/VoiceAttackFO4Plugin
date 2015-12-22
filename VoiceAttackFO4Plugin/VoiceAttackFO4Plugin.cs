@@ -17,7 +17,7 @@ namespace VoiceAttackFO4Plugin
     {
 
         
-
+        //Version .21
         public static string VA_DisplayName()
         {
             return "Voice Attack FO4Plugin";  //this is what you will want displayed in dropdowns as well as in the log file to indicate the name of your plugin
@@ -55,7 +55,7 @@ namespace VoiceAttackFO4Plugin
 
         public static void VA_Invoke1(String context, ref Dictionary<string, object> state, ref Dictionary<string, Int16?> conditions, ref Dictionary<string, string> textValues, ref Dictionary<string, object> extendedValues)
         {
-           
+            
             string strVariable = "";
             string strCommand = "";
             string strMsg = "";
@@ -94,9 +94,24 @@ namespace VoiceAttackFO4Plugin
                     
             }
 
-            if (textValues.ContainsKey("FT_Location")) 
+            if (textValues.ContainsKey("Home_Location")) 
             {
-                if (textValues["FT_Location"] == null) 
+                if (textValues["Home_Location"] == null) 
+                {
+                    strVariable = "Vault 111";
+                }
+
+                else
+                {
+                    strVariable = textValues["Home_Location"];
+                   
+                }
+
+            }
+
+            if (textValues.ContainsKey("FT_Location"))
+            {
+                if (textValues["FT_Location"] == null)
                 {
                     strVariable = "Vault 111";
                 }
@@ -104,16 +119,19 @@ namespace VoiceAttackFO4Plugin
                 else
                 {
                     strVariable = textValues["FT_Location"];
-                   
+
                 }
 
             }
+
             if (textValues.ContainsKey("SentCommand"))
             {
                 if (textValues["SentCommand"] == null)
                 {
                     textValues["ReturnMessage"] = "No Command Was given";
-                    
+                    System.Windows.Forms.MessageBox.Show("No SentCommand value Was givens", "Error Voice Attack FO4Plugin",
+                        System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error
+                        );
                     return;
                 }
                 else
@@ -121,8 +139,16 @@ namespace VoiceAttackFO4Plugin
                     strCommand = textValues["SentCommand"];
                     
                 }
-                    
+
+          
             }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("No SentCommand Was given", "Error Voice Attack FO4Plugin ",
+                        System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error
+                        );
+            }
+
 
             if (textValues.ContainsKey("Direction_Location")) 
             {
@@ -138,6 +164,23 @@ namespace VoiceAttackFO4Plugin
                 }
 
             }
+
+            if (textValues.ContainsKey("StationName"))
+            {
+                
+                if (textValues["StationName"] == null)
+                {
+                    strVariable = "Diamond City Radio";
+                }
+
+                else
+                {
+                    strVariable = textValues["StationName"];
+
+                }
+
+            }
+
 
             if (textValues.ContainsKey("MonitorHP"))
             {
@@ -156,15 +199,13 @@ namespace VoiceAttackFO4Plugin
             }
 
 
-           
+            //System.Windows.Forms.MessageBox.Show(strPORT.ToString());
+            //System.Windows.Forms.MessageBox.Show(strHOST);
             strMsg = strCommand + ";" + strVariable;
+            //System.Windows.Forms.MessageBox.Show("strMsg = " + strMsg);
             String sndClient = SendMsg(IPAddress.Parse(strHOST), strPORT, strMsg);
             textValues["ServerResponse"] = sndClient;
-            if (strCommand == "MonitorHP")
-            {
-
-
-            }
+            
         }
 
 
@@ -173,6 +214,7 @@ namespace VoiceAttackFO4Plugin
             byte[] bytes = new byte[1024];
             string result = "";
             // Connect to a remote device.
+            
             try
             {
                 // Establish the remote endpoint for the socket.
@@ -182,12 +224,10 @@ namespace VoiceAttackFO4Plugin
 
                 // Create a TCP/IP  socket.
                 Socket sender = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-
                 // Connect the socket to the remote endpoint. Catch any errors.
                 try
                 {
                     sender.Connect(remoteEP);
-
 
                     // Encode the data string into a byte array.
                     byte[] msg = Encoding.ASCII.GetBytes(themessage);
@@ -198,10 +238,11 @@ namespace VoiceAttackFO4Plugin
                     // Receive the response from the remote device.
                     int bytesRec = sender.Receive(bytes);
                     result = String.Format("{0}", Encoding.ASCII.GetString(bytes, 0, bytesRec));
-                    return result;
+                    
                     // Release the socket.
                     sender.Shutdown(SocketShutdown.Both);
                     sender.Close();
+                    return result;
 
                 } // TODO Add more descriptive errors.
                 catch (ArgumentNullException ane)
@@ -212,7 +253,10 @@ namespace VoiceAttackFO4Plugin
                 }
                 catch (SocketException se)
                 {
-                    Console.WriteLine("SocketException : {0}", se.ToString());
+                    System.Windows.Forms.MessageBox.Show("Co Connection to host sever. Check your IP and Port", "Error Voice Attack FO4Plugin ",
+                        System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error
+                        );
+
                     result = "Not Connected";
                     return result;
                 }
