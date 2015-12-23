@@ -6,7 +6,7 @@
 		-"Get Directions to" + name of location will say back the compass heading that location is towards.
 		-"Heading" or "Directions" Will reuse last Directions you got.
 		-"Setup" is used to set Host ip/port of server different from default. Change two text vaules in this command to what you want.
-		 
+		
 	To make your own VoiceAttack commands you need to send following values to the plugin.
 
 	The host ip/port is coded to default of 127.0.0.1(localhost) and port of 8089. If want to change this send text vaules with your commands 
@@ -40,7 +40,9 @@ to the plugin HOST and PORT.
 		NextStation - Cycles to next in range radio station
 		QuestDirections - Will get directions to the spoke quest step. *This command not working that well due to having to use dictation 
 						  engine to get the text which it does not work well. I am planning on make this better somehow.
-
+		*****New items in .3******
+		GrenadeEquip - Will equip grenade/mine/moltov of {TXT:GrenadeName}
+		NextGrenade - Will cycle to next grenade in your invetory(right now it is alpha sorting I am going to be making it also dmg based and other sort )
 	
 	
 	
@@ -49,6 +51,7 @@ to the plugin HOST and PORT.
 	
 	-To come:
 			
-			-Add Invetory equiping.useing via name of item.
+			-Add Invetory equiping.useing via name of item.(On hold as inventory system data that fallout 4 is sending is hoocky and it sendign false items that can will crash the game.)
+			-Add a next mine and next grenade commands as well as current one that does both.
 			-Add in status monitoring that will monitor your stats and give verbal feedback if the go below/over a set value.
 				 
