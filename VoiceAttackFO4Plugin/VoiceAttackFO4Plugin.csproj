@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\..\VoiceAttack Export\Nexus\</OutputPath>
+    <OutputPath>..\..\..\..\VoiceAttack Export\Nexus\Fallout4_VoiceAttack_Plugin_v_\Fallout4Plugin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

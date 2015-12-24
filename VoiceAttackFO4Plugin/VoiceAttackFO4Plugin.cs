@@ -62,37 +62,6 @@ namespace VoiceAttackFO4Plugin
             string strHOST = "";
             int strPORT = 8089;
 
-            if (textValues.ContainsKey("HOST")) 
-            {
-                if (textValues["HOST"] == null) 
-                {
-                    strHOST = "127.0.0.1";
-                }
-
-                else
-                {
-                    strHOST = textValues["HOST"];
-
-                }
-
-            }
-
-
-
-            if (textValues.ContainsKey("PORT")) 
-            {
-                if (textValues["PORT"] == null) 
-                {
-                    strPORT = Int32.Parse("8089");
-                }
-
-                else
-                {
-                    strPORT = Int32.Parse(textValues["PORT"]);
-                }
-
-                    
-            }
 
             if (textValues.ContainsKey("Home_Location")) 
             {
@@ -124,30 +93,21 @@ namespace VoiceAttackFO4Plugin
 
             }
 
-            if (textValues.ContainsKey("SentCommand"))
+            if (textValues.ContainsKey("WeaponName"))
             {
-                if (textValues["SentCommand"] == null)
+                if (textValues["WeaponName"] == null)
                 {
-                    textValues["ReturnMessage"] = "No Command Was given";
-                    System.Windows.Forms.MessageBox.Show("No SentCommand value Was givens", "Error Voice Attack FO4Plugin",
-                        System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error
-                        );
-                    return;
-                }
-                else
-                {
-                    strCommand = textValues["SentCommand"];
-                    
+                    strVariable = "Test";
                 }
 
-          
+                else
+                {
+                    strVariable = textValues["WeaponName"];
+
+                }
+
             }
-            else
-            {
-                System.Windows.Forms.MessageBox.Show("No SentCommand Was given", "Error Voice Attack FO4Plugin ",
-                        System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error
-                        );
-            }
+            
 
 
             if (textValues.ContainsKey("Direction_Location")) 
@@ -181,6 +141,23 @@ namespace VoiceAttackFO4Plugin
 
             }
 
+            if (textValues.ContainsKey("GrenadeName"))
+            {
+
+                if (textValues["GrenadeName"] == null)
+                {
+                    strVariable = "None";
+                }
+
+                else
+                {
+                    strVariable = textValues["GrenadeName"];
+
+                }
+
+            }
+
+
 
             if (textValues.ContainsKey("MonitorHP"))
             {
@@ -196,6 +173,80 @@ namespace VoiceAttackFO4Plugin
                    
                 }
 
+            }
+
+
+            if (textValues.ContainsKey("HOST"))
+            {
+                if (textValues["HOST"] == null)
+                {
+                    strHOST = "127.0.0.1";
+                }
+
+                else
+                {
+                    strHOST = textValues["HOST"];
+
+                }
+
+            }
+
+
+
+            if (textValues.ContainsKey("PORT"))
+            {
+                if (textValues["PORT"] == null)
+                {
+                    strPORT = Int32.Parse("8089");
+                }
+
+                else
+                {
+                    strPORT = Int32.Parse(textValues["PORT"]);
+                }
+
+
+            }
+
+            if (textValues.ContainsKey("SentName"))
+            {
+
+                if (textValues["SentName"] == null)
+                {
+                    strVariable = "None";
+                }
+
+                else
+                {
+                    strVariable = textValues["SentName"];
+
+                }
+
+            }
+
+            if (textValues.ContainsKey("SentCommand"))
+            {
+                if (textValues["SentCommand"] == null)
+                {
+                    textValues["ReturnMessage"] = "No Command Was given";
+                    System.Windows.Forms.MessageBox.Show("No SentCommand value Was givens", "Error Voice Attack FO4Plugin",
+                        System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error
+                        );
+                    return;
+                }
+                else
+                {
+                    strCommand = textValues["SentCommand"];
+
+                }
+
+
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("No SentCommand Was given", "Error Voice Attack FO4Plugin ",
+                        System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error
+                        );
             }
 
 
@@ -251,7 +302,7 @@ namespace VoiceAttackFO4Plugin
                     result = "Erro1";
                     return result;
                 }
-                catch (SocketException se)
+                catch (SocketException e)
                 {
                     System.Windows.Forms.MessageBox.Show("Co Connection to host sever. Check your IP and Port", "Error Voice Attack FO4Plugin ",
                         System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error

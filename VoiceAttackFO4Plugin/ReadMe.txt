@@ -1,4 +1,8 @@
-﻿	I have provided some premade commands in profile for you to use.
+﻿	I have change most of the commands in profile so that now all have to do is speak the name inorder to have action. This is for most actions except for fast travel,home and direction commands 
+	because the location list is so long having multiple list can make editing sluggish. 
+	
+	
+	I have provided some premade commands in profile for you to use.
 		-"Fast Travel to" or "Teleport to" + name of the location and it will send you to that location if it is unlocked ingame
 			ex: "Fast Travel to Bunker Hill" will fast travel to bunker hill
 		-"Set home to" + name of a location will set a home fast travel option
@@ -26,12 +30,13 @@ to the plugin HOST and PORT.
 	List of Text Variables use in VoiceAtacck commands to send to the Plugin.
 -------------------------------------------------------------------------------------------
 
+	*Changed way plugin interacts with VoiceAttack so all need to now send to the plugin is 
+	HOST,PORT,SentCommand,SentName
+	
 	HOST - Used to set HOST ip defaults to 127.0.0.1 in plugin
 	PORT - Used to set HOST Port defaults to 8089 in Plugin
-	FT_Location - Used to set fast travel location that want sent to Fallout 4. Must be a vailid location on map and one you can FT too.
-	Home_Location - USed to send home location that can set.
-	Direction_Location - Used to get directions to a valid location on map. Can be any location even un discovered ones.
-	StationName - USed to set valid radio station name
+	
+	SentName - Can be any valid name for location,food,weapon,grenade etc. 
 	SentCommand - Used to control how the plugin will process you commands. Set it to following to get effect
 		FastTravel - Fast travel to {TXT:FT_Location}
 		LocationDirections - Set to get Directions to {TXT:Direction_Location}
@@ -40,11 +45,19 @@ to the plugin HOST and PORT.
 		NextStation - Cycles to next in range radio station
 		QuestDirections - Will get directions to the spoke quest step. *This command not working that well due to having to use dictation 
 						  engine to get the text which it does not work well. I am planning on make this better somehow.
-		*****New items in .3******
 		GrenadeEquip - Will equip grenade/mine/moltov of {TXT:GrenadeName}
 		NextGrenade - Will cycle to next grenade in your invetory(right now it is alpha sorting I am going to be making it also dmg based and other sort )
-	
-	
+			New SentCommand items added 
+		EquipWeapon - Will Equip a sent weapon name. 
+		EatFood - Will eat what ever food name you send.
+
+
+	These items are TXT values are decreapted but still can use them, SentName replaces all these as I went in a different direction on server side that I was planning.
+	FT_Location - Used to set fast travel location that want sent to Fallout 4. Must be a vailid location on map and one you can FT too.
+	Home_Location - USed to send home location that can set.
+	Direction_Location - Used to get directions to a valid location on map. Can be any location even un discovered ones.
+	StationName - USed to set valid radio station name
+
 	
 	
 	
@@ -55,3 +68,5 @@ to the plugin HOST and PORT.
 			-Add a next mine and next grenade commands as well as current one that does both.
 			-Add in status monitoring that will monitor your stats and give verbal feedback if the go below/over a set value.
 				 
+				    
+					    
